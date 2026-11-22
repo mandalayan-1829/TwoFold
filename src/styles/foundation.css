@@ -1,0 +1,42 @@
+.tf-foundation {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-10);
+}
+
+.tf-foundation__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.tf-foundation__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-cherry);
+}
+
+.tf-foundation__tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+  margin-top: var(--space-2);
+}
+
+.tf-foundation__lead {
+  color: var(--color-ink-secondary);
+  max-width: 56ch;
+}
+
+.tf-foundation__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

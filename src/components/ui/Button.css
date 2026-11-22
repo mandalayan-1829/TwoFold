@@ -1,0 +1,103 @@
+.tf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.tf-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.tf-btn:disabled {
+  opacity: 0.6;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Sizes */
+.tf-btn--sm {
+  min-height: 38px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.tf-btn--md {
+  min-height: var(--touch-target-min);
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--text-base);
+}
+
+.tf-btn--lg {
+  min-height: 50px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-lg);
+}
+
+.tf-btn--full {
+  width: 100%;
+}
+
+/* Variants */
+.tf-btn--primary {
+  background-color: var(--color-wine);
+  color: var(--color-on-accent);
+  box-shadow: var(--shadow-xs);
+}
+
+.tf-btn--primary:hover:not(:disabled) {
+  background-color: var(--color-cherry);
+  box-shadow: var(--shadow-soft);
+}
+
+.tf-btn--secondary {
+  background-color: var(--color-surface);
+  color: var(--color-wine);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-xs);
+}
+
+.tf-btn--secondary:hover:not(:disabled) {
+  background-color: var(--color-blush-soft);
+  border-color: var(--color-rose-muted);
+}
+
+.tf-btn--ghost {
+  background-color: transparent;
+  color: var(--color-wine);
+}
+
+.tf-btn--ghost:hover:not(:disabled) {
+  background-color: var(--color-blush-soft);
+}
+
+.tf-btn--danger {
+  background-color: var(--color-danger);
+  color: var(--color-on-accent);
+  box-shadow: var(--shadow-xs);
+}
+
+.tf-btn--danger:hover:not(:disabled) {
+  background-color: var(--color-danger-hover);
+  box-shadow: var(--shadow-soft);
+}
+
+.tf-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}

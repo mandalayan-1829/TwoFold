@@ -1,0 +1,101 @@
+.tf-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background-color: var(--color-overlay);
+  backdrop-filter: blur(2px);
+  animation: tf-fade-in var(--duration-fast) var(--ease-standard);
+}
+
+.tf-dialog {
+  width: 100%;
+  max-width: 440px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-elevated);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-elevated);
+  padding: var(--space-6);
+  animation: tf-scale-in var(--duration-normal) var(--ease-standard);
+}
+
+.tf-dialog__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.tf-dialog__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--color-ink);
+}
+
+.tf-dialog__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  margin: -6px -8px 0 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-muted);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.tf-dialog__close:hover:not(:disabled) {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.tf-dialog__description {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-secondary);
+}
+
+.tf-dialog__actions {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 480px) {
+  .tf-dialog__actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: var(--space-3);
+  }
+}
+
+@keyframes tf-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tf-scale-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -1,0 +1,23 @@
+.tf-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.tf-container--sm {
+  max-width: var(--container-sm);
+}
+
+.tf-container--md {
+  max-width: var(--container-md);
+}
+
+.tf-container--lg {
+  max-width: var(--container-lg);
+}
+
+@media (min-width: 768px) {
+  .tf-container {
+    padding-inline: var(--space-6);
+  }
+}
