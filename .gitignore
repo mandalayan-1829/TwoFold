@@ -31,3 +31,6 @@ supabase/.branches
 *.njsproj
 *.sln
 *.sw?
+
+# Track provisioning template, ignore actual provisioning secrets
+!.env.provision.example

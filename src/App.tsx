@@ -1,5 +1,11 @@
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { Heart, ShieldCheck } from 'lucide-react'
+import { ProtectedRoute } from './components/auth/ProtectedRoute'
+import { LoginPage } from './pages/LoginPage'
 import { Container } from './components/layout/Container'
+import { useState } from 'react'
+import { Button } from './components/ui/Button'
+import { supabase } from './lib/supabase'
 import {
   Alert,
   Card,
@@ -10,7 +16,33 @@ import {
 } from './components/ui'
 import './styles/foundation.css'
 
-function App() {
+
+function HomePage() {
+  const navigate = useNavigate()
+
+  const [signingOut, setSigningOut] = useState(false)
+  const [signOutError, setSignOutError] = useState('')
+
+  async function handleSignOut() {
+    setSigningOut(true)
+    setSignOutError('')
+
+    try {
+      const { error } = await supabase.auth.signOut()
+
+      if (error) {
+        setSignOutError('Unable to sign out. Please try again.')
+        return
+      }
+
+      navigate('/login', { replace: true })
+    } catch {
+      setSignOutError('Something went wrong. Please try again.')
+    } finally {
+      setSigningOut(false)
+    }
+  }
+
   return (
     <main className="tf-foundation">
       <Container size="sm">
@@ -28,34 +60,54 @@ function App() {
 
           <Card as="section" padding="lg">
             <CardHeader>
-              <CardTitle>Design System Foundation Ready</CardTitle>
+              <CardTitle>Private Space Protected</CardTitle>
               <CardDescription>
-                Milestone 1 — Task 1.2 complete. Visual tokens, accessible UI
-                primitives, and modular architecture are in place.
+                Authentication and protected routing are being established.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="tf-foundation__lead">
-                Database schema migrations, Row Level Security policies, private
-                storage rules, and Supabase authentication will be connected in
-                the upcoming tasks.
-              </p>
-
-              <Alert variant="info" title="Backend Not Yet Connected">
-                No authentication or data storage is active yet. Private routes
-                and couple data will only be enabled after PostgreSQL RLS and
-                Storage policies are verified.
+              <Alert variant="success" title="Authentication Active">
+                You have an authenticated session.
               </Alert>
 
               <p className="tf-foundation__eyebrow">
                 <ShieldCheck size={15} aria-hidden="true" />
                 <span>Default-Deny Security Architecture</span>
               </p>
+              {signOutError && (
+                <Alert variant="error" title="Sign-out failed">
+                  {signOutError}
+                </Alert>
+              )}
+
+              <Button
+                variant="secondary"
+                fullWidth
+                loading={signingOut}
+                loadingText="Signing out..."
+                onClick={handleSignOut}
+              >
+                Sign out
+              </Button>
             </CardContent>
           </Card>
         </div>
       </Container>
     </main>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<HomePage />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }
 
